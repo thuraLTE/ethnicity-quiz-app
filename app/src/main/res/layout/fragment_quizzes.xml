@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="maxNoOfQuiz"
+            type="Integer" />
+
+        <variable
+            name="viewModel"
+            type="com.example.quizapp.viewmodel.QuizViewModel" />
+    </data>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_gray"
+        android:orientation="vertical"
+        android:padding="12dp"
+        tools:context=".ui.QuizzesFragment">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/question_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/question_label"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="21sp" />
+
+            <ImageView
+                android:id="@+id/ethnic_image"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_below="@+id/question_label"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/quiz_image"
+                android:cropToPadding="true"
+                android:background="@color/light_gray"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ethnic_image"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:layout_weight="0.90"
+                    android:max="8"
+                    android:progress="@{viewModel.count}" />
+
+                <TextView
+                    android:id="@+id/count_label"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.10"
+                    android:text="@{@string/question_count(viewModel.count, maxNoOfQuiz)}"
+                    android:textAlignment="textEnd"
+                    android:textSize="16sp"
+                    tools:text="0/10"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.85">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/submit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/purple_500"
+                android:text="@string/submit_button"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/option_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/option_two"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/radio_textview"
+                android:gravity="center"
+                android:paddingVertical="10dp"
+                android:text="@{viewModel.currentQuiz.option1}"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                tools:text="Option 1" />
+
+            <TextView
+                android:id="@+id/option_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/option_three"
+                android:background="@drawable/radio_textview"
+                android:gravity="center"
+                android:paddingVertical="10dp"
+                android:text="@{viewModel.currentQuiz.option2}"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                tools:text="Option 2" />
+
+            <TextView
+                android:id="@+id/option_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/option_four"
+                android:layout_marginVertical="16dp"
+                android:background="@drawable/radio_textview"
+                android:gravity="center"
+                android:paddingVertical="10dp"
+                android:text="@{viewModel.currentQuiz.option3}"
+                android:textColor="@color/gray"
+                android:textSize="20sp"
+                tools:text="Option 3" />
+
+            <TextView
+                android:id="@+id/option_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_textview"
+                android:gravity="center"
+                android:paddingVertical="10dp"
+                android:text="@{viewModel.currentQuiz.option4}"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                android:layout_above="@+id/submit_btn"
+                android:textColor="@color/gray"
+                tools:text="Option 4" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>
